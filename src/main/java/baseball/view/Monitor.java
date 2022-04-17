@@ -92,7 +92,7 @@ public class Monitor {
         System.out.println(result);
     }
 
-    private void validateCorrectNumberInput(String nums) throws Exception {
+    private void validateCorrectNumberInput(String nums) {
         if (nums == null || nums.length() != 3) {
             throw new IllegalArgumentException();
         }
@@ -100,6 +100,12 @@ public class Monitor {
         if (!validateBetweenOneAndNine(nums.charAt(0))
                 || !validateBetweenOneAndNine(nums.charAt(1))
                 || !validateBetweenOneAndNine(nums.charAt(2))) {
+            throw new IllegalArgumentException();
+        }
+
+        if (nums.charAt(0) == nums.charAt(1)
+            || nums.charAt(0) == nums.charAt(2)
+            || nums.charAt(1) == nums.charAt(2)) {
             throw new IllegalArgumentException();
         }
     }

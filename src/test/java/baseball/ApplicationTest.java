@@ -1,6 +1,5 @@
 package baseball;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +27,24 @@ class ApplicationTest extends NsTest {
     void 예외_테스트() {
         assertSimpleTest(() ->
                 assertThatThrownBy(() -> runException("1234"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("문자 입력하면 예외 발생")
+    void 문자입력() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("12a"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+    }
+
+    @Test
+    @DisplayName("겹치는 숫자 입력하면 예외 발생")
+    void 겹치는_숫자입력() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("122"))
                         .isInstanceOf(IllegalArgumentException.class)
         );
     }
